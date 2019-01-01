@@ -4,6 +4,9 @@ data class Vector(val x: Double, val y: Double, val z: Double) {
 
     companion object {
         val Zero = Vector(0.0, 0.0, 0.0)
+        val X = Vector(1.0, 0.0, 0.0)
+        val Y = Vector(0.0, 1.0, 0.0)
+        val Z = Vector(0.0, 0.0, 1.0)
     }
 
     operator fun unaryPlus() = this
