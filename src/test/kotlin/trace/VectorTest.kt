@@ -42,6 +42,11 @@ class VectorTest {
     }
 
     @Test
+    fun `multiplication of scalar by vector`() {
+        assertThat(2.0 * v1, equalTo(Vector(2.0, 4.0, 6.0)))
+    }
+
+    @Test
     fun `division by scalar`() {
         assertThat(v1 / 2.0, equalTo(Vector(0.5, 1.0, 1.5)))
     }

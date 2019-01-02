@@ -23,3 +23,5 @@ data class Vector(val x: Double, val y: Double, val z: Double) {
     fun norm() = if (this == Zero) Zero else this / Math.sqrt(x * x + y * y + z * z)
 
 }
+
+operator fun Double.times(v: Vector) = Vector(this * v.x, this * v.y, this * v.z)
