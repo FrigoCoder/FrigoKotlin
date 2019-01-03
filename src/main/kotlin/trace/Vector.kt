@@ -20,9 +20,11 @@ data class Vector(val x: Double, val y: Double, val z: Double) {
     operator fun times(that: Vector) = x * that.x + y * that.y + z * that.z
     infix fun x(v: Vector) = Vector(y * v.z - z * v.y, z * v.x - x * v.z, x * v.y - y * v.x)
 
-    fun norm() = when (this) {
+    fun length() = Math.sqrt(x * x + y * y + z * z)
+
+    fun normalize() = when (this) {
         Zero -> Zero
-        else -> this / Math.sqrt(x * x + y * y + z * z)
+        else -> this / length()
     }
 
 }

@@ -72,8 +72,13 @@ class VectorTest {
     }
 
     @Test
+    fun `length of vector`() {
+        assertThat(v1.length(), equalTo(sqrt(14.0)))
+    }
+
+    @Test
     fun `normalized vector`() {
-        assertThat(v1.norm(), equalTo(Vector(1.0 / sqrt(14.0), 2.0 / sqrt(14.0), 3.0 / sqrt(14.0))))
+        assertThat(v1.normalize(), equalTo(Vector(1.0 / sqrt(14.0), 2.0 / sqrt(14.0), 3.0 / sqrt(14.0))))
     }
 
 }
