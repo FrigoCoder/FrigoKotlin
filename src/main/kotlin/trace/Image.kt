@@ -1,7 +1,7 @@
 package trace
 
-import javafx.embed.swing.SwingFXUtils
-import javafx.scene.image.WritableImage
+import java.awt.image.BufferedImage
+import java.awt.image.BufferedImage.TYPE_INT_RGB
 import java.io.File
 import javax.imageio.ImageIO
 
@@ -15,17 +15,14 @@ class Image(val xs: Int, val ys: Int) {
     }
 
     fun save(filename: String) {
-        val image = WritableImage(xs, ys)
-        val writer = image.pixelWriter
+        val image = BufferedImage(xs, ys, TYPE_INT_RGB)
         for (x in 0 until xs) {
             for (y in 0 until ys) {
-                val color = this[x, y]
-                writer.setColor(x, y, javafx.scene.paint.Color(color.r, color.g, color.b, 1.0))
+                image.setRGB(x, y, this[x, y].clip().toInt())
             }
         }
-        val bufferedImage = SwingFXUtils.fromFXImage(image, null)
         val file = File(filename)
-        ImageIO.write(bufferedImage, file.extension, file)
+        ImageIO.write(image, file.extension, file)
     }
 
 }

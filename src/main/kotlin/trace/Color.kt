@@ -1,5 +1,7 @@
 package trace
 
+import kotlin.math.roundToInt
+
 data class Color(val r: Double, val g: Double, val b: Double) {
 
     companion object {
@@ -20,6 +22,8 @@ data class Color(val r: Double, val g: Double, val b: Double) {
     operator fun minus(that: Color) = Color(r - that.r, g - that.g, b - that.b)
 
     fun clip() = Color(r.coerceIn(0.0, 1.0), g.coerceIn(0.0, 1.0), b.coerceIn(0.0, 1.0))
+
+    fun toInt() = ((r * 255.0).roundToInt() shl 16) + ((g * 255.0).roundToInt() shl 8) + (b * 255.0).roundToInt()
 
 }
 
