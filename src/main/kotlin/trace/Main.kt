@@ -16,8 +16,7 @@ fun main(args: Array<String>) {
     ))
 
     val image = Image(1024, 768)
-
-    val camera = Camera(Vector(50.0, 52.2, 295.6), Vector(0.0, -0.042612, -1.0), 0.5135, image.xs, image.ys)
+    val camera = Camera(Vector(50.0, 52.2, 295.6), Vector(0.0, -0.042612, -1.0), 0.5135, 140.0, image.xs, image.ys)
 
     val filter = Dirichlet(2.0)
     val random = Random(0x12345678)
@@ -32,8 +31,7 @@ fun main(args: Array<String>) {
             val dx = 0.0
             val dy = 0.0
 
-            val direction = camera.direction(x + 0.5 + dx, y + 0.5 + dy)
-            val ray = Ray(camera.origin + direction * 140.0, direction)
+            val ray = camera.ray(x + 0.5 + dx, y + 0.5 + dy)
             val hit = scene.shoot(ray)
             var color = hit?.sphere?.color ?: Color.Black
             val weight = filter(dx) * filter(dy)
