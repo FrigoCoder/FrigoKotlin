@@ -6,7 +6,7 @@ import org.junit.Test
 
 class SphereTest {
 
-    private val sphere = Sphere(2.0, Vector(3.0, 0.0, 0.0), Color.Black, Color.Black, Reflection.Diffuse)
+    private val sphere = Sphere(Vector(3.0, 0.0, 0.0), 2.0, Color.Black, Color.Black, Reflection.Diffuse)
 
     @Test
     fun `ray does not intersect sphere`() {

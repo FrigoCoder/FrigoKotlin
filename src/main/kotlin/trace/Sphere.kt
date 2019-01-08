@@ -1,8 +1,8 @@
 package trace
 
 data class Sphere(
-    val radius: Double,
     val position: Vector,
+    val radius: Double,
     val emission: Color,
     val color: Color,
     val reflection: Reflection) {
