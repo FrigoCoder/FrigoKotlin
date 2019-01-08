@@ -6,10 +6,10 @@ class DirichletTest {
 
     @Test
     fun `test trigonometric dirichlet against naive dirichlet`() {
-        assertFilterEquals(Dirichlet(1.0), DirichletNaive(1), 0.25)
-        assertFilterEquals(Dirichlet(2.0), DirichletNaive(2), 0.25)
-        assertFilterEquals(Dirichlet(3.0), DirichletNaive(3), 0.25)
-        assertFilterEquals(Dirichlet(4.0), DirichletNaive(4), 0.25)
+        assertFilterEquals(Dirichlet(1.0), DirichletNaive(1), 0.125)
+        assertFilterEquals(Dirichlet(2.0), DirichletNaive(2), 0.125)
+        assertFilterEquals(Dirichlet(3.0), DirichletNaive(3), 0.125)
+        assertFilterEquals(Dirichlet(4.0), DirichletNaive(4), 0.125)
     }
 
 }
