@@ -6,10 +6,10 @@ fun main(args: Array<String>) {
     val scene = Scene(listOf(
         Sphere(Vector(1e5 + 1, 40.8, 81.6), 1e5, Color(.75, .25, .25), Reflection.Diffuse, Color.Black),
         Sphere(Vector(-1e5 + 99, 40.8, 81.6), 1e5, Color(.25, .25, .75), Reflection.Diffuse, Color.Black),
-        Sphere(Vector(50.0, 40.8, 1e5), 1e5, Color(.75, .75, .75), Reflection.Diffuse, Color.Black),
+        Sphere(Vector(50.0, 40.8, 1e5), 1e5, Color.LightGrey, Reflection.Diffuse, Color.Black),
         Sphere(Vector(50.0, 40.8, -1e5 + 170), 1e5, Color.Black, Reflection.Diffuse, Color.Black),
-        Sphere(Vector(50.0, 1e5, 81.6), 1e5, Color(.75, .75, .75), Reflection.Diffuse, Color.Black),
-        Sphere(Vector(50.0, -1e5 + 81.6, 81.6), 1e5, Color(.75, .75, .75), Reflection.Diffuse, Color.Black),
+        Sphere(Vector(50.0, 1e5, 81.6), 1e5, Color.LightGrey, Reflection.Diffuse, Color.Black),
+        Sphere(Vector(50.0, -1e5 + 81.6, 81.6), 1e5, Color.LightGrey, Reflection.Diffuse, Color.Black),
         Sphere(Vector(27.0, 16.5, 47.0), 16.5, Color.White * .999, Reflection.Specular, Color.Black),
         Sphere(Vector(73.0, 16.5, 78.0), 16.5, Color.White * .999, Reflection.Refractive, Color.Black),
         Sphere(Vector(50.0, 681.6 - .27, 81.6), 600.0, Color.Black, Reflection.Diffuse, Color(12.0, 12.0, 12.0))

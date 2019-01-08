@@ -6,10 +6,15 @@ data class Color(val r: Double, val g: Double, val b: Double) {
 
     companion object {
         val Black = Color(0.0, 0.0, 0.0)
+        val DarkGrey = Color(0.25, 0.25, 0.25)
+        val Grey = Color(0.5, 0.5, 0.5)
+        val LightGrey = Color(0.75, 0.75, 0.75)
+        val White = Color(1.0, 1.0, 1.0)
+
         val Red = Color(1.0, 0.0, 0.0)
         val Green = Color(0.0, 1.0, 0.0)
         val Blue = Color(0.0, 0.0, 1.0)
-        val White = Color(1.0, 1.0, 1.0)
+
     }
 
     operator fun unaryPlus() = this
