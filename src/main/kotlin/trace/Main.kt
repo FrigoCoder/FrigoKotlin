@@ -26,19 +26,21 @@ fun main(args: Array<String>) {
         for (y in 0 until image.ys) {
             var result = Color.Black
             var sum = 0.0
-            for (s in 0 until 100) {
-                val dx = random.nextDouble(filter.left, filter.right)
-                val dy = random.nextDouble(filter.left, filter.right)
+//            for (s in 0 until 100) {
+//                val dx = random.nextDouble(filter.left, filter.right)
+//                val dy = random.nextDouble(filter.left, filter.right)
+            val dx = 0.0
+            val dy = 0.0
 
-                val direction = camera.direction(x + 0.5 + dx, y + 0.5 + dy)
-                val ray = Ray(camera.origin + direction * 140.0, direction)
-                val hit = scene.shoot(ray)
-                var color = hit?.sphere?.color ?: Color.Black
-                val weight = filter(dx) * filter(dy)
+            val direction = camera.direction(x + 0.5 + dx, y + 0.5 + dy)
+            val ray = Ray(camera.origin + direction * 140.0, direction)
+            val hit = scene.shoot(ray)
+            var color = hit?.sphere?.color ?: Color.Black
+            val weight = filter(dx) * filter(dy)
 
-                result += color * weight
-                sum += weight
-            }
+            result += color * weight
+            sum += weight
+//        }
             image[x, y] = result / sum
         }
     }
