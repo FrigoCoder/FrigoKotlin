@@ -14,7 +14,7 @@ data class Sphere(
 
     fun intersect(ray: Ray): Double {
         val oc = ray.origin - position
-        val ldotoc = ray.direction * oc
+        val ldotoc = ray.direction.vector * oc
         val determinant = ldotoc * ldotoc - oc * oc + radius * radius
         if (determinant < 0) {
             return Double.POSITIVE_INFINITY

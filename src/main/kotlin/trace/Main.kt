@@ -16,7 +16,8 @@ fun main(args: Array<String>) {
     ))
 
     val image = Image(1024, 768)
-    val camera = Camera(Vector(50.0, 52.2, 295.6), Vector(0.0, -0.042612, -1.0), 54.3609968, 140.0, image.xs, image.ys)
+    val camera = Camera(Vector(50.0, 52.2, 295.6), Direction(0.0, -0.042612, -1.0), 54.3609968, 140.0, image.xs, image
+        .ys)
 
     val filter = Dirichlet(2.0)
     val random = Random(0x12345678)

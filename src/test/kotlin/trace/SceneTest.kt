@@ -13,14 +13,14 @@ class SceneTest {
 
     @Test
     fun `ray misses`() {
-        val ray = Ray(Vector(0.0, 0.0, 0.0), Vector(0.0, 1.0, 0.0))
+        val ray = Ray(Vector(0.0, 0.0, 0.0), Direction(0.0, 1.0, 0.0))
         val hit = scene.shoot(ray)
         assertThat(hit, nullValue())
     }
 
     @Test
     fun `ray hits first sphere`() {
-        val ray = Ray(Vector(0.0, 0.0, 0.0), Vector(1.0, 0.0, 0.0))
+        val ray = Ray(Vector(0.0, 0.0, 0.0), Direction(1.0, 0.0, 0.0))
         val hit = scene.shoot(ray)!!
         assertThat(hit.sphere, equalTo(sphere1))
         assertThat(hit.distance, equalTo(1.0))
@@ -28,7 +28,7 @@ class SceneTest {
 
     @Test
     fun `ray hits second sphere`() {
-        val ray = Ray(Vector(10.0, 0.0, 0.0), Vector(-1.0, 0.0, 0.0))
+        val ray = Ray(Vector(10.0, 0.0, 0.0), Direction(-1.0, 0.0, 0.0))
         val hit = scene.shoot(ray)!!
         assertThat(hit.sphere, equalTo(sphere2))
         assertThat(hit.distance, equalTo(2.0))

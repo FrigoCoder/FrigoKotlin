@@ -9,9 +9,8 @@ import org.junit.Test
 class RayTest {
 
     private val origin = Vector(1.0, 2.0, 3.0)
-    private val directionOriginal = Vector(2.0, 3.0, 4.0)
-    private val direction = directionOriginal.normalize()
-    private val ray = Ray(origin, directionOriginal)
+    private val direction = Direction(2.0, 3.0, 4.0)
+    private val ray = Ray(origin, direction)
 
     @Test
     fun `ray is initialized properly`() {
@@ -22,7 +21,8 @@ class RayTest {
     @Test
     fun `ray equals works properly`() {
         assertThat(ray, equalTo(Ray(origin, direction)))
-        assertThat(ray, not(equalTo(Ray(direction, origin))))
+        assertThat(ray, not(equalTo(Ray(origin, Direction(2.0, 3.0, 5.0)))))
+        assertThat(ray, not(equalTo(Ray(Vector(1.0, 2.0, 4.0), direction))))
         assertThat(ray, not(nullValue()))
     }
 
