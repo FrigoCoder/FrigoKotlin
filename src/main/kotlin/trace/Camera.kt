@@ -14,7 +14,7 @@ data class Camera(
     private val cy = (direction x cx).normalize() * angle
 
     fun ray(x: Double, y: Double): Ray {
-        val direction = direction + cx * (x / xs - 0.5) + cy * (y / ys - 0.5)
+        val direction = (direction + cx * (x / xs - 0.5) + cy * (y / ys - 0.5)).normalize()
         return Ray(origin + direction * near, direction)
     }
 
