@@ -7,8 +7,8 @@ import org.junit.Test
 
 class SceneTest {
 
-    private val sphere1 = Sphere(Vector(3.0, 0.0, 0.0), 2.0, Color.Black, Color.Black, Reflection.Diffuse)
-    private val sphere2 = Sphere(Vector(6.0, 0.0, 0.0), 2.0, Color.Black, Color.Black, Reflection.Diffuse)
+    private val sphere1 = Sphere(Vector(3.0, 0.0, 0.0), 2.0, Color.Black, Reflection.Diffuse, Color.Black)
+    private val sphere2 = Sphere(Vector(6.0, 0.0, 0.0), 2.0, Color.Black, Reflection.Diffuse, Color.Black)
     private val scene = Scene(listOf(sphere1, sphere2))
 
     @Test

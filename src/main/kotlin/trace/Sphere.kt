@@ -3,9 +3,9 @@ package trace
 data class Sphere(
     val position: Vector,
     val radius: Double,
-    val emission: Color,
     val color: Color,
-    val reflection: Reflection) {
+    val reflection: Reflection,
+    val emission: Color = Color.Black) {
 
     /**
      * Based on smallpt and https://en.wikipedia.org/wiki/Line%E2%80%93sphere_intersection. Does not allow negative
