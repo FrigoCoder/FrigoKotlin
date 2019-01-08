@@ -9,8 +9,9 @@ import org.junit.Test
 class RayTest {
 
     private val origin = Vector(1.0, 2.0, 3.0)
-    private val direction = Vector(2.0, 3.0, 4.0).normalize()
-    private val ray = Ray(origin, direction)
+    private val directionOriginal = Vector(2.0, 3.0, 4.0)
+    private val direction = directionOriginal.normalize()
+    private val ray = Ray(origin, directionOriginal)
 
     @Test
     fun `ray is initialized properly`() {
