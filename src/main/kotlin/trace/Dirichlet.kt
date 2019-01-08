@@ -10,7 +10,7 @@ data class Dirichlet(val radius: Double) : Filter {
 
     override operator fun invoke(t: Double): Double = when (t) {
         0.0 -> 1.0
-        in (-radius).rangeTo(radius) -> {
+        in left..right -> {
             val x = t * Math.PI / radius
             0.5 / radius * (1.0 + cos(x)) * sin(x * radius) / sin(x)
         }

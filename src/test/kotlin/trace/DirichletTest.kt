@@ -19,16 +19,16 @@ data class DirichletNaive(val radius: Int) : Filter {
     override val left get() = -radius.toDouble()
     override val right get() = radius.toDouble()
 
-    override operator fun invoke(t: Double): Double {
-        if (t !in (-radius.toDouble()).rangeTo(radius.toDouble())) {
-            return 0.0
+    override operator fun invoke(t: Double): Double = when (t) {
+        in left..right -> {
+            val x = t * Math.PI / radius
+            var result = 0.5 + 0.5 * Math.cos(radius * x)
+            for (i in 1 until radius) {
+                result += Math.cos(i * x)
+            }
+            result / radius
         }
-        val x = t * Math.PI / radius
-        var result = 0.5 + 0.5 * Math.cos(radius * x)
-        for (i in 1 until radius) {
-            result += Math.cos(i * x)
-        }
-        return result / radius
+        else -> 0.0
     }
 
 }
