@@ -3,12 +3,12 @@ package trace
 data class Camera(
     val origin: Vector,
     val direction: Vector,
-    val angle: Double,
+    val fov: Double,
     var near: Double,
     val xs: Int,
-    val ys: Int
-) {
+    val ys: Int) {
 
+    private val angle = Math.tan(0.5 * fov * Math.PI / 180)
     private val aspectRatio = xs.toDouble() / ys.toDouble()
     private val cx = Vector(aspectRatio, 0.0, 0.0) * angle
     private val cy = (direction x cx).normalize() * angle

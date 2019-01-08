@@ -16,7 +16,7 @@ fun main(args: Array<String>) {
     ))
 
     val image = Image(1024, 768)
-    val camera = Camera(Vector(50.0, 52.2, 295.6), Vector(0.0, -0.042612, -1.0), 0.5135, 140.0, image.xs, image.ys)
+    val camera = Camera(Vector(50.0, 52.2, 295.6), Vector(0.0, -0.042612, -1.0), 54.3609968, 140.0, image.xs, image.ys)
 
     val filter = Dirichlet(2.0)
     val random = Random(0x12345678)
@@ -25,20 +25,20 @@ fun main(args: Array<String>) {
         for (y in 0 until image.ys) {
             var result = Color.Black
             var sum = 0.0
-//            for (s in 0 until 100) {
+
+            for (s in 0 until 1) {
 //                val dx = random.nextDouble(filter.left, filter.right)
-//                val dy = random.nextDouble(filter.left, filter.right)
-            val dx = 0.0
-            val dy = 0.0
+                //val dy = random.nextDouble(filter.left, filter.right)
+                val dx = 0.0
+                val dy = 0.0
+                val ray = camera.ray(x + 0.5 + dx, y + 0.5 + dy)
+                val hit = scene.shoot(ray)
+                var color = hit?.sphere?.color ?: Color.Black
+                val weight = filter(dx) * filter(dy)
+                result += color * weight
+                sum += weight
+            }
 
-            val ray = camera.ray(x + 0.5 + dx, y + 0.5 + dy)
-            val hit = scene.shoot(ray)
-            var color = hit?.sphere?.color ?: Color.Black
-            val weight = filter(dx) * filter(dy)
-
-            result += color * weight
-            sum += weight
-//        }
             image[x, y] = result / sum
         }
     }
