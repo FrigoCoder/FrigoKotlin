@@ -13,4 +13,3 @@ fun assertFilterEquals(actual: Filter, expected: Filter, granularity: Double) {
         point += granularity
     }
 }
-

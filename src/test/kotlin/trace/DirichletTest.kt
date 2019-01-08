@@ -22,12 +22,15 @@ data class DirichletNaive(val radius: Int) : Filter {
     override operator fun invoke(t: Double): Double = when (t) {
         in left..right -> {
             val x = t * Math.PI / radius
-            var result = 0.5 + 0.5 * Math.cos(radius * x)
-            for (i in 1 until radius) {
-                result += Math.cos(i * x)
-            }
-            result / radius
+            (0..radius).sumByDouble { i -> weight(i) * Math.cos(i * x) } / radius
         }
+        else -> 0.0
+    }
+
+    private fun weight(i: Int) = when (i) {
+        0 -> 0.5
+        in 1 until radius -> 1.0
+        radius -> 0.5
         else -> 0.0
     }
 
