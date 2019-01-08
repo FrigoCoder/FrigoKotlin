@@ -1,0 +1,103 @@
+package trace
+
+import org.hamcrest.MatcherAssert.assertThat
+import org.hamcrest.core.IsEqual.equalTo
+import org.junit.Test
+
+class SphereTest {
+
+    private val sphere = Sphere(2.0, Vector(3.0, 0.0, 0.0), Color.Black, Color.Black, Reflection.Diffuse)
+
+    @Test
+    fun `ray does not intersect sphere`() {
+        noIntersect(Ray(Vector(-1.0, 0.0, 0.0), Vector(1.0, 1.0, 0.0).normalize()))
+    }
+
+    @Test
+    fun `ray intersects sphere once`() {
+        // left
+        intersect(Ray(Vector(1.0, -1.0, 0.0), Vector(0.0, 1.0, 0.0).normalize()), 1.0)
+        intersect(Ray(Vector(1.0, 3.0, 0.0), Vector(0.0, -1.0, 0.0).normalize()), 3.0)
+
+        // right
+        intersect(Ray(Vector(5.0, -1.0, 0.0), Vector(0.0, 1.0, 0.0).normalize()), 1.0)
+        intersect(Ray(Vector(5.0, 3.0, 0.0), Vector(0.0, -1.0, 0.0).normalize()), 3.0)
+
+        // top
+        intersect(Ray(Vector(0.0, 2.0, 0.0), Vector(1.0, 0.0, 0.0).normalize()), 3.0)
+        intersect(Ray(Vector(10.0, 2.0, 0.0), Vector(-1.0, 0.0, 0.0).normalize()), 7.0)
+
+        // bot
+        intersect(Ray(Vector(0.0, -2.0, 0.0), Vector(1.0, 0.0, 0.0).normalize()), 3.0)
+        intersect(Ray(Vector(10.0, -2.0, 0.0), Vector(-1.0, 0.0, 0.0).normalize()), 7.0)
+
+        // front
+        intersect(Ray(Vector(0.0, 0.0, 2.0), Vector(1.0, 0.0, 0.0).normalize()), 3.0)
+        intersect(Ray(Vector(10.0, 0.0, 2.0), Vector(-1.0, 0.0, 0.0).normalize()), 7.0)
+
+        // behind
+        intersect(Ray(Vector(0.0, 0.0, -2.0), Vector(1.0, 0.0, 0.0).normalize()), 3.0)
+        intersect(Ray(Vector(10.0, 0.0, -2.0), Vector(-1.0, 0.0, 0.0).normalize()), 7.0)
+    }
+
+    @Test
+    fun `ray intersects sphere twice at closest intersection point`() {
+        // left
+        intersect(Ray(Vector(0.0, 0.0, 0.0), Vector(1.0, 0.0, 0.0).normalize()), 1.0)
+
+        // right
+        intersect(Ray(Vector(10.0, 0.0, 0.0), Vector(-1.0, 0.0, 0.0).normalize()), 5.0)
+
+        // top
+        intersect(Ray(Vector(3.0, 8.0, 0.0), Vector(0.0, -1.0, 0.0).normalize()), 6.0)
+
+        // bot
+        intersect(Ray(Vector(3.0, -4.0, 0.0), Vector(0.0, 1.0, 0.0).normalize()), 2.0)
+
+        // front
+        intersect(Ray(Vector(3.0, 0.0, -5.0), Vector(0.0, 0.0, 1.0).normalize()), 3.0)
+
+        // back
+        intersect(Ray(Vector(3.0, 0.0, 10.0), Vector(0.0, 0.0, -1.0).normalize()), 8.0)
+    }
+
+    @Test
+    fun `ray intersects sphere at slanted angles`() {
+        intersect(Ray(Vector(3.0, 0.0, 0.0), Vector(1.0, 1.0, 1.0).normalize()), 2.0)
+    }
+
+    @Test
+    fun ray_does_not_hit_at_negative_distances() {
+        // left
+        noIntersect(Ray(Vector(0.0, 0.0, 0.0), Vector(-1.0, 0.0, 0.0).normalize()))
+
+        // right
+        noIntersect(Ray(Vector(10.0, 0.0, 0.0), Vector(1.0, 0.0, 0.0).normalize()))
+
+        // top
+        noIntersect(Ray(Vector(3.0, 8.0, 0.0), Vector(0.0, 1.0, 0.0).normalize()))
+
+        // bot
+        noIntersect(Ray(Vector(3.0, -4.0, 0.0), Vector(0.0, -1.0, 0.0).normalize()))
+
+        // front
+        noIntersect(Ray(Vector(3.0, 0.0, -5.0), Vector(0.0, 0.0, -1.0).normalize()))
+
+        // back
+        noIntersect(Ray(Vector(3.0, 0.0, 10.0), Vector(0.0, 0.0, 1.0).normalize()))
+    }
+
+    @Test
+    fun ray_hits_from_inside_sphere() {
+        intersect(Ray(Vector(2.0, 0.0, 0.0), Vector(1.0, 0.0, 0.0).normalize()), 3.0)
+    }
+
+    private fun noIntersect(ray: Ray) {
+        assertThat(sphere.intersect(ray), equalTo(Double.POSITIVE_INFINITY))
+    }
+
+    private fun intersect(ray: Ray, distance: Double) {
+        assertThat(sphere.intersect(ray), equalTo(distance))
+    }
+
+}
